@@ -2,11 +2,11 @@ package com.example.myntra;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
@@ -60,17 +60,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS && !done) {
                     done = true;
-                    Utils.speak(tts, "Do you want to enable audio mode? Please speak your choice after this message ends."); // smajha? haan oka
                 } else {
                     Toast.makeText(getApplicationContext(), "TTS Initialization failed!", Toast.LENGTH_SHORT).show();
                 }
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        createDialog();
-                    }
-                }, 2000);
+                createDialog();
             }
         }, "com.google.android.tts");
         tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
@@ -114,7 +108,7 @@ public class SplashActivity extends AppCompatActivity {
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             Log.d("RESULT", result.get(0));
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            intent.putExtra("blind", result.get(0).toLowerCase().contains("yes") || result.get(0).toLowerCase().contains("true")||result.get(0).toLowerCase().contains("yeah")||result.get(0).toLowerCase().contains("yup")||result.get(0).toLowerCase().contains("on"));
+            intent.putExtra("blind", result.get(0).toLowerCase().contains("yes") || result.get(0).toLowerCase().contains("true") || result.get(0).toLowerCase().contains("yeah") || result.get(0).toLowerCase().contains("yup") || result.get(0).toLowerCase().contains("on"));
             finish();
             startActivity(intent);
         }
@@ -131,11 +125,11 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call activity
+                tts.stop();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.putExtra("blind", true);
                 finish();
                 startActivity(intent);
-
                 alertDialog.cancel();
 
             }
@@ -144,6 +138,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.cancel();
+                tts.stop();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.putExtra("blind", false);
                 finish();
@@ -151,7 +146,15 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                if (done)
+                    Utils.speak(tts, "Do you want to enable audio mode? Please speak your choice after this message ends."); // smajha? haan oka
+            }
+        });
         alertDialog.show();
     }
 
 }
+//aur jab yes ya no press karte hai to vo audio continue hi rakhta hai

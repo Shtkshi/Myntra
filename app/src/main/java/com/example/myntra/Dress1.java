@@ -35,8 +35,8 @@ public class Dress1 extends AppCompatActivity {
         findViewById(R.id.tryIt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dress1.this, UploadActivity.class);
-                intent.putExtra("productId", R.drawable.dress1);
+                Intent intent = new Intent(Dress1.this, doors_to_trial_room.class);
+                intent.putExtra("productId", R.drawable.femaletwo);
                 startActivity(intent);
             }
         });

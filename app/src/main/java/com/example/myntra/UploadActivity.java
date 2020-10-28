@@ -135,16 +135,15 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
     }
-// postman se bhej kya kuch abh?
     public void uploadMulti() {
         if (possible != 7) {
             return;
         }
         final VolleyMultipartRequest.DataPart[] parts = new VolleyMultipartRequest.DataPart[4];
-        parts[0] = new VolleyMultipartRequest.DataPart("image0.jpg", toByteArray(b1), "image/jpeg");
-        parts[1] = new VolleyMultipartRequest.DataPart("image1.jpg", toByteArray(b2), "image/jpeg");
-        parts[2] = new VolleyMultipartRequest.DataPart("image2.jpg", toByteArray(b3), "image/jpeg");
-        parts[3] = new VolleyMultipartRequest.DataPart("image3.jpg", toByteArray(BitmapFactory.decodeResource(getResources(), productId)), "image/jpeg");
+        parts[0] = new VolleyMultipartRequest.DataPart("image0.jpg", toByteArray(b1, false), "image/jpeg");
+        parts[1] = new VolleyMultipartRequest.DataPart("image1.jpg", toByteArray(b2, false), "image/jpeg");
+        parts[2] = new VolleyMultipartRequest.DataPart("image2.jpg", toByteArray(b3, false), "image/jpeg");
+        parts[3] = new VolleyMultipartRequest.DataPart("image3.jpg", toByteArray(BitmapFactory.decodeResource(getResources(), productId), true), "image/jpeg");
 
 //        progressBar.setVisibility(View.VISIBLE);
         VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, "http://192.168.1.240:5000/api/android", new Response.Listener<NetworkResponse>() {
@@ -161,8 +160,6 @@ public class UploadActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -184,77 +181,19 @@ public class UploadActivity extends AppCompatActivity {
                 return params;
             }
         };
+        req.setShouldCache(false);
         req.setRetryPolicy(new DefaultRetryPolicy(
-                4000,
+                60000,
                 0,
                 1));
         Volley.newRequestQueue(getApplicationContext()).add(req);
     }
 
-    //chalaya? arnav ko bulana kabhi camera ke samne, i will wakl to him virtually
+    //chalaya? arnav ko bulana kabhi camera ke samne, i will wakl to him virtually. server chla na phirse kr
     private final String twoHyphens = "--";
     private final String lineEnd = "\r\n";
     private final String boundary = "apiclient-" + System.currentTimeMillis();
 
-    public void upload() {
-        final byte[][] byteArray = {toByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.dress1)), toByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.female1_d)), toByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.male1_d)), toByteArray(BitmapFactory.decodeResource(getResources(), R.drawable.male1))};
-        T.executeQuery(byteArray);
-        if (possible != 7) {
-
-            return;
-        }
-        final VolleyMultipartRequest.DataPart[] parts = new VolleyMultipartRequest.DataPart[4];
-        parts[0] = new VolleyMultipartRequest.DataPart("image0.jpg", toByteArray(b1), "image/jpeg");
-        parts[1] = new VolleyMultipartRequest.DataPart("image1.jpg", toByteArray(b2), "image/jpeg");
-        parts[2] = new VolleyMultipartRequest.DataPart("image2.jpg", toByteArray(b3), "image/jpeg");
-        parts[3] = new VolleyMultipartRequest.DataPart("image3.jpg", toByteArray(BitmapFactory.decodeResource(getResources(), productId)), "image/jpeg");
-
-//        final byte[][] byteArray = {toByteArray(b1), toByteArray(b2), toByteArray(b3), toByteArray(BitmapFactory.decodeResource(getResources(), productId))};
-        StringRequest req = new StringRequest(Request.Method.POST, "http://192.168.1.240:5000/api/android", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    imageview = (ImageView) findViewById(R.id.withProductImage);
-                    Bitmap bytes = BitmapFactory.decodeByteArray(response.getBytes(), 0, response.length());
-//                    Bitmap decodedByte = BitmapFactory.decodeByteArray(response., 0, response.length());
-                    imageview.setImageBitmap(bytes);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("VolleyError", error.toString());
-
-            }
-        }) {
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                DataOutputStream dos = new DataOutputStream(bos);
-
-                try {
-                    // populate data byte payload
-                    dataParse(dos, parts);
-                    // close multipart form data after text and file data
-                    dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-                    return bos.toByteArray();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            public String getBodyContentType() {
-                return "multipart/form-data;boundary=" + boundary;
-            }
-        };
-        Volley.newRequestQueue(getApplicationContext()).add(req);
-    }
 
     private void dataParse(DataOutputStream dataOutputStream, VolleyMultipartRequest.DataPart[] data) throws IOException {
         for (int i = 0; i < 4; i++)

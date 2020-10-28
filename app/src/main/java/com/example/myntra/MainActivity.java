@@ -1,6 +1,7 @@
 package com.example.myntra;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         if (tts != null)
@@ -153,11 +155,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {// ye kya kar raeh hai?
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ISHIARA_TEST_RESULT_CODE) {
-            if (data != null) {
-                int score = data.getIntExtra("result", 0);
-                disease = data.getIntExtra("disease", 0);
-                Toast.makeText(MainActivity.this, "Result Received" + score, Toast.LENGTH_LONG).show();
-                resultEvaluated = true;
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    int score = data.getIntExtra("result", 0);
+                    disease = data.getIntExtra("disease", 0);
+                    Toast.makeText(MainActivity.this, "Result Received" + score, Toast.LENGTH_LONG).show();
+                    resultEvaluated = true;
+                }
+            }else{
+                colorBlindSwitch.setChecked(false);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -179,9 +185,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+//git par kese dalte hai?
 
     TextToSpeech tts;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_options, menu);

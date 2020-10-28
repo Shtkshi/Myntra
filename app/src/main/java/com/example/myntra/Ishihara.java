@@ -50,12 +50,12 @@ public class Ishihara extends AppCompatActivity {
                     return;
                 }
 
-                String editAns = ((TextInputEditText) findViewById(R.id.answer)).getText().toString().trim();
-                if(editAns.isEmpty()){
+                String editAns = ((TextInputEditText) findViewById(R.id.answer)).getText().toString();
+                if (editAns.isEmpty()) {
                     Toast.makeText(Ishihara.this, "Please enter some text.", Toast.LENGTH_LONG).show();
                     return;
                 }
-
+                editAns = editAns.trim();
                 eval = editAns.equals(solution[count]);
                 if (eval) {
                     Toast.makeText(Ishihara.this, "Correct answer", Toast.LENGTH_SHORT).show();

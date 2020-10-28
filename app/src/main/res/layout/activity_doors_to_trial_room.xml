@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".doors_to_trial_room">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/button_bg"
+        android:textStyle="bold"
+        android:text="Virtual Door"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:id="@+id/door"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/door"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:id="@+id/textone"
+        android:textSize="20dp"
+        android:text="Welcome to the all new expirience of virtual trial room....."
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:src="@drawable/trialroom"
+        android:layout_below="@+id/textone"
+        android:id="@+id/instructions"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/instructions"
+        android:textColor="#FFFFFF"
+        android:id="@+id/texttwo"
+        android:padding="20dp"
+        android:text="Yay!!! You are all set to procede in the virtual room. "
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texttwo"
+        android:text="Enter"
+        android:id="@+id/trial"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"
+        android:background="@drawable/button_bg"
+        />
+
+</RelativeLayout>

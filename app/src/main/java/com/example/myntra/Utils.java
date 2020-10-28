@@ -24,9 +24,12 @@ public class Utils {
         }
     }
 
-    public static byte[] toByteArray(Bitmap bmp) {
+    public static byte[] toByteArray(Bitmap bmp, boolean png) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        if(!png)
+            bmp.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+        else
+            bmp.compress(Bitmap.CompressFormat.PNG, 50, stream);
         return stream.toByteArray();
     }
 

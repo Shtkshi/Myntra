@@ -3,84 +3,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="10dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Clothes"
-        android:textColor="#000"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+    <HorizontalScrollView
+        android:id="@+id/scree"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="4dp"
+            android:padding="4dp">
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/e" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/b" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/f" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/c" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:backgroundTint="#000000"
+                android:scaleType="fitXY"
+                android:src="@drawable/a" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/g" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/h" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
     <LinearLayout
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/scree"
         android:layout_alignLeft="@+id/title"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/colorBlindSwitch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
             android:layout_gravity="center"
-            android:gravity="center"
-
+            android:gravity="end"
+            android:text="Color Blind Mode"
             android:textSize="16sp"
-
             android:textStyle="bold" />
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/scroll"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
             <ImageButton
-                android:id="@+id/male"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/button_bg"
-                android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/maleicon"
-                android:text="Male"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:src="@drawable/womentext"
+                android:text="Female" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/female"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/button_bg"
-                android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/femaleicon"
-                android:text="Female"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
+                android:src="@drawable/femaleone" />
 
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/malemail"
+                android:text="Female" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:scaleType="fitXY"
+                android:src="@drawable/mentext" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
 </RelativeLayout>
