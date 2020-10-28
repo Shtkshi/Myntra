@@ -29,7 +29,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private SwitchCompat colorBlindSwitch;
-    private static final int ISHIARA_TEST_RESULT_CODE = 1000;//ye kyu result chalaya hia, startActivityForResult, toh k
+    private static final int ISHIARA_TEST_RESULT_CODE = 1000;
     boolean resultEvaluated = false;
     boolean flag = false;
     int disease;
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //initRecog();
     }
 
 
@@ -132,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // call ishiara
                     if (!resultEvaluated)
                         startActivityForResult(new Intent(MainActivity.this, Ishihara.class), ISHIARA_TEST_RESULT_CODE);
                     else {
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {// ye kya kar raeh hai?
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ISHIARA_TEST_RESULT_CODE) {
             if (resultCode == Activity.RESULT_OK) {
@@ -185,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-//git par kese dalte hai?
+
 
     TextToSpeech tts;
 
@@ -209,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_4:
                 return true;
             case android.R.id.home:
-                onBackPressed(); // ab chalao
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

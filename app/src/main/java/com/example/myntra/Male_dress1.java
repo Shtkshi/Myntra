@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class Male_dress1 extends AppCompatActivity {
     int disease;
-    Boolean colorblind;//disease ka 1 2 3 kaha likha hai?
+    Boolean colorblind;
     int[] imgID = {R.drawable.male1, R.drawable.male1_d, R.drawable.male1_p,R.drawable.male1_t};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class Male_dress1 extends AppCompatActivity {
             case R.id.menu_settings:
                 return true;
             case android.R.id.home:
-                onBackPressed(); // ab chalao
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

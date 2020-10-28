@@ -36,13 +36,11 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    Intent speechRecognizerIntent; //chala? hi chala? video bheji to do bara chalaya ai permisison magta hai? vo pehle hi mang liya hai
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //initRecog();
     }
 
     boolean done = false;
@@ -117,14 +115,13 @@ public class SplashActivity extends AppCompatActivity {
 
     public void createDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
-        final View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_blind, null, false);//why null? samjha?
+        final View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_blind, null, false);
         builder.setView(dialogView);
         final AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         dialogView.findViewById(R.id.yes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // call activity
                 tts.stop();
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.putExtra("blind", true);
@@ -150,11 +147,10 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onShow(DialogInterface dialog) {
                 if (done)
-                    Utils.speak(tts, "Do you want to enable audio mode? Please speak your choice after this message ends."); // smajha? haan oka
+                    Utils.speak(tts, "Do you want to enable audio mode? Please speak your choice after this message ends.");
             }
         });
         alertDialog.show();
     }
 
 }
-//aur jab yes ya no press karte hai to vo audio continue hi rakhta hai

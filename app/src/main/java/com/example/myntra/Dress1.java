@@ -53,7 +53,7 @@ public class Dress1 extends AppCompatActivity {
         return true;
     }
 
-//true kya hai? bata rhe hai humne yaha successfully menu inflate krwa diya hai inflated menu uthaoye aap,  bujhe?haan okay
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -62,7 +62,7 @@ public class Dress1 extends AppCompatActivity {
             case R.id.menu_settings:
                 return true;
             case android.R.id.home:
-                onBackPressed(); // ab chalao
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

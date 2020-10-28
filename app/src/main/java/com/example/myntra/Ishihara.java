@@ -71,7 +71,7 @@ public class Ishihara extends AppCompatActivity {
                     Toast.makeText(Ishihara.this, "Wrong answer", Toast.LENGTH_SHORT).show();
                 }
                 if (count == drawables.length - 1) {
-                    // test finish do something kya karu? tu nahi, main hi thinking
+
                     findViewById(R.id.frame1).setVisibility(View.GONE);
                     findViewById(R.id.frame2).setVisibility(View.VISIBLE);
                     if (False >= 4 && ones == False) {

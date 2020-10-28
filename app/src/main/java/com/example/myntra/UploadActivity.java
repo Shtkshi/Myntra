@@ -48,7 +48,6 @@ public class UploadActivity extends AppCompatActivity {
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         } catch (ActivityNotFoundException e) {
-            // display error state to the user chala kar dekhio ab, here? hmm abhi aaya washroom se ok chala kar dekha, and baa phir
         }
 
 */
@@ -145,15 +144,11 @@ public class UploadActivity extends AppCompatActivity {
         parts[2] = new VolleyMultipartRequest.DataPart("image2.jpg", toByteArray(b3, false), "image/jpeg");
         parts[3] = new VolleyMultipartRequest.DataPart("image3.jpg", toByteArray(BitmapFactory.decodeResource(getResources(), productId), true), "image/jpeg");
 
-//        progressBar.setVisibility(View.VISIBLE);
         VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, "http://192.168.1.240:5000/api/android", new Response.Listener<NetworkResponse>() {
             @Override
             public void onResponse(NetworkResponse response) {
                 try {
                     progressBar.setVisibility(View.GONE);
-//                    JSONObject obj = new JSONObject(new String(response.data));
-//                    String base64 = response.data; // api return
-//                    byte[] imageAsBytes = Base64.decode(response.data, Base64.DEFAULT);
                     imageview = (ImageView) findViewById(R.id.withProductImage);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(response.data, 0, response.data.length);
                     imageview.setImageBitmap(decodedByte);
@@ -165,14 +160,11 @@ public class UploadActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("VolleyError", error.toString());
-//                progressBar.setVisibility(View.GONE); //phirse kar and see if abhi bi slow
             }
         }) {
             @Override
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
-                // file name could found file base or direct access from real path
-                // for now just get bitmap data from ImageView,
                 params.put("0", parts[0]);
                 params.put("1", parts[1]);
                 params.put("2", parts[2]);
@@ -189,7 +181,6 @@ public class UploadActivity extends AppCompatActivity {
         Volley.newRequestQueue(getApplicationContext()).add(req);
     }
 
-    //chalaya? arnav ko bulana kabhi camera ke samne, i will wakl to him virtually. server chla na phirse kr
     private final String twoHyphens = "--";
     private final String lineEnd = "\r\n";
     private final String boundary = "apiclient-" + System.currentTimeMillis();
