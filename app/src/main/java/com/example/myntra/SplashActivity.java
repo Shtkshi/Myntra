@@ -105,7 +105,9 @@ public class SplashActivity extends AppCompatActivity {
             ArrayList<String> result = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             Log.d("RESULT", result.get(0));
+
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+
             intent.putExtra("blind", result.get(0).toLowerCase().contains("yes") || result.get(0).toLowerCase().contains("true") || result.get(0).toLowerCase().contains("yeah") || result.get(0).toLowerCase().contains("yup") || result.get(0).toLowerCase().contains("on"));
             finish();
             startActivity(intent);
@@ -147,7 +149,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onShow(DialogInterface dialog) {
                 if (done)
-                    Utils.speak(tts, "Do you want to enable audio mode? Please speak your choice after this message ends.");
+                    Utils.speak(tts, "Welcome to Vizija. Do you want to enable audio mode? Please speak your choice after this message ends.");
             }
         });
         alertDialog.show();

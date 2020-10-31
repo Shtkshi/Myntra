@@ -10,11 +10,12 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
     int disease;
     int RecordAudioRequestCode = 1000;
     SpeechRecognizer speechRecognizer;
+    boolean colorblind;
+    int[] women = {R.drawable.womenicon, R.drawable.women_d, R.drawable.women_p, R.drawable.women_t};
+    int[] men = {R.drawable.menicon, R.drawable.men_d, R.drawable.men_p, R.drawable.men_t};
+
+    int[] e = {R.drawable.e, R.drawable.e_d, R.drawable.e_p, R.drawable.e_t};
+    int[] h = {R.drawable.h, R.drawable.h_d, R.drawable.h_p, R.drawable.h_t};
+    int[] g = {R.drawable.g, R.drawable.g_d, R.drawable.g_p, R.drawable.g_t};
+    int[] c = {R.drawable.c, R.drawable.c_d, R.drawable.c_p, R.drawable.c_t};
+    int[] b = {R.drawable.b, R.drawable.b_d, R.drawable.b_p, R.drawable.b_t};
+    int[] f = {R.drawable.f, R.drawable.f_d, R.drawable.f_p, R.drawable.f_t};
+
 
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -58,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         boolean blind = extras.getBoolean("blind");
+        disease = extras.getInt("disease");
+
         if (blind) {
             tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
 
@@ -99,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onError(String utteranceId) {
                 }
             });
+
         }
         findViewById(R.id.male).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,18 +139,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
         colorBlindSwitch = findViewById(R.id.colorBlindSwitch);
         colorBlindSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    if (!resultEvaluated)
-                        startActivityForResult(new Intent(MainActivity.this, Ishihara.class), ISHIARA_TEST_RESULT_CODE);
-                    else {
-                        Toast.makeText(MainActivity.this, "Result already evaluated", Toast.LENGTH_SHORT).show();
-                    }
+                    startActivityForResult(new Intent(MainActivity.this, Ishihara.class), ISHIARA_TEST_RESULT_CODE);
+//
+                } else {
+                    disease = 0;
+                    ((ImageView) findViewById(R.id.male)).setImageResource(men[disease]);
+                    ((ImageView) findViewById(R.id.female)).setImageResource(women[disease]);
+                    ((ImageButton) findViewById(R.id.e)).setImageResource(e[disease]);
+                    ((ImageButton) findViewById(R.id.h)).setImageResource(h[disease]);
+                    ((ImageButton) findViewById(R.id.g)).setImageResource(g[disease]);
+                    ((ImageButton) findViewById(R.id.c)).setImageResource(c[disease]);
+                    ((ImageButton) findViewById(R.id.b)).setImageResource(b[disease]);
+                    ((ImageButton) findViewById(R.id.f)).setImageResource(f[disease]);
+                    ((ImageButton) findViewById(R.id.dup_b)).setImageResource(b[disease]);
+                    ((ImageButton) findViewById(R.id.dup_g)).setImageResource(g[disease]);
                 }
             }
         });
@@ -159,22 +181,35 @@ public class MainActivity extends AppCompatActivity {
                     disease = data.getIntExtra("disease", 0);
                     Toast.makeText(MainActivity.this, "Result Received" + score, Toast.LENGTH_LONG).show();
                     resultEvaluated = true;
+                    ((ImageView) findViewById(R.id.male)).setImageResource(men[disease]);
+                    ((ImageView) findViewById(R.id.female)).setImageResource(women[disease]);
+                    ((ImageButton) findViewById(R.id.e)).setImageResource(e[disease]);
+                    ((ImageButton) findViewById(R.id.h)).setImageResource(h[disease]);
+                    ((ImageButton) findViewById(R.id.g)).setImageResource(g[disease]);
+                    ((ImageButton) findViewById(R.id.c)).setImageResource(c[disease]);
+                    ((ImageButton) findViewById(R.id.b)).setImageResource(b[disease]);
+                    ((ImageButton) findViewById(R.id.f)).setImageResource(f[disease]);
+                    ((ImageButton) findViewById(R.id.dup_b)).setImageResource(b[disease]);
+                    ((ImageButton) findViewById(R.id.dup_g)).setImageResource(g[disease]);
                 }
-            }else{
+            } else {
                 colorBlindSwitch.setChecked(false);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RecordAudioRequestCode && resultCode == RESULT_OK && data != null) {
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        boolean blind = extras.getBoolean("blind");
+        if (blind == true && requestCode == RecordAudioRequestCode && resultCode == RESULT_OK && data != null) {
             ArrayList<String> result = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            Log.d("RESULT", result.get(0));
-            if (result.get(0).toLowerCase().contains("women")) {
+//            Log.d("RESULT", result.get(0));
+            if (result.get(0).toLowerCase().contains("women") || result.get(0).toLowerCase().contains("female") || result.get(0).toLowerCase().contains("ladki") || result.get(0).toLowerCase().contains("girl")) {
                 Intent intent = new Intent(MainActivity.this, Dress1.class);
                 intent.putExtra("blind", true);
                 finish();
                 startActivity(intent);
-            } else if (result.get(0).toLowerCase().contains("men")) {
+            } else if (result.get(0).toLowerCase().contains("men") || result.get(0).toLowerCase().contains("male") || result.get(0).toLowerCase().contains("boy") || result.get(0).toLowerCase().contains("ladke")) {
                 Intent intent = new Intent(MainActivity.this, Male_dress1.class);
                 intent.putExtra("blind", true);
                 finish();

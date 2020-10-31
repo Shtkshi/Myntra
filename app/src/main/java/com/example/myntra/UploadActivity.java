@@ -106,7 +106,7 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
-        productId = getIntent().getIntExtra("productId", R.drawable.dress1);
+        productId = getIntent().getIntExtra("productId", R.drawable.femaletwo);
         findViewById(R.id.upload1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

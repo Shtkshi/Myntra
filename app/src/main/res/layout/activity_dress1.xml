@@ -30,8 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="DOROTHY PERKINS"
-                android:textSize="20dp"
+                android:text="ADIBAS"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -39,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="Women Beige and Black Animal"
+                android:textAlignment="textEnd"
+                android:text="Prime 2.0 Heathered Crew-Neck T-shirt"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -48,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="4dp"
-            android:text="Printed A line dress"
-            android:textSize="15dp" />
+            android:textStyle="bold"
+            android:text="Rs. 839"
+            android:textSize="22dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +60,7 @@
             android:layout_margin="4dp"
             android:padding="4dp"
             android:text="Size"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <HorizontalScrollView
@@ -129,7 +132,7 @@
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 android:text="Product Design"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -137,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="Beige and black printed woven A line dress with gathered detail, has a round neck, leeveless and has a flounce hem"
+                android:text="Prime 2.0 Heathered Crew-Neck T-shirt with gathered detail, has a V-neck, four cactus images printed on t-shirt."
                 android:textSize="12sp" />
 
             <TextView
@@ -146,7 +149,7 @@
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 android:text="Material and Core"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -171,15 +174,23 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="The dress from Dorothy Perkins is both stylish and durable, making it a must have item. When you are going through an art gallery opening or a theater, wear this printed beige piece with platform heels and trendy clutch"
+                android:text="The dress from Adibas is both stylish and durable, making it a must have item. When you are going through an art gallery opening or a theater, wear this piece with platform heels and trendy clutch"
                 android:textSize="12sp" />
 
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:typeface="sans"
+            android:textColor="@color/colorPrimary"
+            android:text="Having doubts? Test it before you buy it"/>
 
         <Button
             android:id="@+id/tryIt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tryIt" />
+            android:background="@drawable/button_bg"
+            android:text="tryIt"
+            android:layout_gravity="center" />
     </LinearLayout>
 </ScrollView>

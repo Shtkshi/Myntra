@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Dress1 extends AppCompatActivity {
     int disease = 0;
     boolean colorblind;
-    int[] imgID = {R.drawable.female1, R.drawable.female1_d, R.drawable.female1_p, R.drawable.female1_t};
+    int[] imgID = {R.drawable.femaletwo, R.drawable.tshirt_d, R.drawable.tshirt_p, R.drawable.tshirt_t};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,14 @@ public class Dress1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dress1.this, doors_to_trial_room.class);
-                intent.putExtra("productId", R.drawable.femaletwo);
+                intent.putExtra("productId", imgID[disease]);
                 startActivity(intent);
             }
         });
         if (flag || blind) {
             AudioMode();
         }
-        if(colorblind)
-            ((ImageView) findViewById(R.id.female)).setImageResource(imgID[disease]);
+            ((ImageView) findViewById(R.id.frame)).setImageResource(imgID[disease]);
     }
 
     @Override
@@ -52,8 +51,6 @@ public class Dress1 extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.dress_toolbar, menu);
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -68,6 +65,12 @@ public class Dress1 extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        if (tts != null)
+            tts.stop();
+        super.onBackPressed();
     }
 
     private void AudioMode() {
@@ -97,7 +100,7 @@ public class Dress1 extends AppCompatActivity {
         } else {
             Log.i("TTS", "Language Supported.");
         }
-        tts.speak("This Tshirt has following product specification :Black solid T-shirt, has a round neck, three-quarter sleeves. Material of the Tshirt is Cotton and is regular fit, length is regular. You will get single peice in the purchase. This Tshirt is available in 5 categories.Extra small, Small , Medium, Large and Extra Large",
+        tts.speak("The product displayed is a women grey printed v-neck t-shirt. The print consists of four colorful cactus images. It's material is cotton,elastane and can be machine washed. The dress from Adibas is both stylish and durable, making it a must have item. When you are going through an art gallery opening or a theater, wear this piece with platform heels and trendy clutch. It is available in in 5 sizes- small, medium, large, extra large and extra extra large. It's current price is 839 rupees inclusive of all taxes.",
                 TextToSpeech.QUEUE_FLUSH, null, "InitText");
         Log.i("TTS", "Initialization success.");
     }

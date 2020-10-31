@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Male_dress1 extends AppCompatActivity {
     int disease;
     Boolean colorblind;
-    int[] imgID = {R.drawable.male1, R.drawable.male1_d, R.drawable.male1_p,R.drawable.male1_t};
+    int[] imgID = {R.drawable.male1, R.drawable.male_d, R.drawable.male_p,R.drawable.male_t};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +31,11 @@ public class Male_dress1 extends AppCompatActivity {
         assert extras != null;
         boolean flag = extras.getBoolean("flag");
         boolean blind=extras.getBoolean("blind");
-        findViewById(R.id.tryIt).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id._men).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Male_dress1.this, doors_to_trial_room.class);
-                intent.putExtra("productId", R.drawable.male1);
+                intent.putExtra("productId", imgID[disease]);
                 startActivity(intent);
             }
         });
@@ -96,6 +96,7 @@ public class Male_dress1 extends AppCompatActivity {
 
     TextToSpeech tts;
 
+
     public void initTTs() {
         int ttsLang = tts.setLanguage(Locale.US);
 
@@ -105,7 +106,7 @@ public class Male_dress1 extends AppCompatActivity {
         } else {
             Log.i("TTS", "Language Supported.");
         }
-        tts.speak("This Tshirt has following product specification :Black solid T-shirt, has a round neck, three-quarter sleeves. Material of the Tshirt is Cotton and is regular fit, length is regular. You will get single peice in the purchase. This Tshirt is available in 5 categories.Extra small, Small , Medium, Large and Extra Large",
+        tts.speak("The product displayed is a Abrakadabra men Black  printed round-neck t-shirt. The print consists of a rainbow colored mushroom garden, clouds and an eye depicted as a sun. It's material is cotton, elastane and can be machine washed. The dress from Abrakadabra is both stylish and durable, making it a must have item. It is available in in 5 sizes-  small, medium, large, extra large and extra extra large. It's current price is 599 rupees inclusive of all taxes.",
                 TextToSpeech.QUEUE_FLUSH, null, "InitText");
         Log.i("TTS", "Initialization success.");
     }

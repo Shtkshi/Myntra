@@ -13,19 +13,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/shirt"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".doors_to_trial_room"></activity>
         <activity android:name=".UploadActivity" />
         <activity android:name=".Male_dress1" />
         <activity android:name=".Dress1" />
         <activity android:name=".Ishihara" />
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

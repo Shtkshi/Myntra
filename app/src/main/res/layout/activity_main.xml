@@ -3,78 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
     <HorizontalScrollView
         android:id="@+id/scree"
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_height="100dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="4dp"
             android:padding="4dp">
 
             <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
+                android:id="@+id/e"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/e" />
 
             <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
+                android:id="@+id/h"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/b" />
+                android:src="@drawable/h" />
 
             <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-
-                android:layout_marginVertical="4dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/f" />
-
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/c" />
-
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
-                android:backgroundTint="#000000"
-                android:scaleType="fitXY"
-                android:src="@drawable/a" />
-
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
+                android:id="@+id/g"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/g" />
 
             <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="4dp"
+                android:id="@+id/c"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/h" />
+                android:src="@drawable/c" />
+
+            <ImageButton
+                android:id="@+id/b"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/b" />
+
+            <ImageButton
+
+                android:layout_width="99dp"
+                android:id="@+id/dup_g"
+                android:layout_height="99dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/g" />
+
+            <ImageButton
+                android:id="@+id/f"
+                android:layout_width="99dp"
+                android:layout_height="99dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/f" />
+
+            <ImageButton
+                android:layout_width="99dp"
+                android:id="@+id/dup_b"
+                android:layout_height="99dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/b" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -85,13 +81,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scree"
-        android:layout_alignLeft="@+id/title"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/colorBlindSwitch"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="19dp"
             android:layout_gravity="center"
             android:gravity="end"
             android:text="Color Blind Mode"
@@ -105,52 +100,22 @@
         android:layout_below="@+id/scroll"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+        <ImageButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/womenicon"
+            android:text="Female" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg"
-                android:scaleType="fitXY"
-                android:src="@drawable/womentext"
-                android:text="Female" />
-
-            <ImageView
-                android:id="@+id/female"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/femaleone" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/male"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/malemail"
-                android:text="Female" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg"
-                android:scaleType="fitXY"
-                android:src="@drawable/mentext" />
-
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/menicon" />
     </LinearLayout>
 
 

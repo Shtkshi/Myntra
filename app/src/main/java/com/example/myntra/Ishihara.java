@@ -18,8 +18,10 @@ public class Ishihara extends AppCompatActivity {
     Button submitIshihara;
     boolean eval = false;
     int count = 0;
-    int[] drawables = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four, R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight, R.drawable.nine, R.drawable.ten, R.drawable.eleven, R.drawable.twelve, R.drawable.thirteen, R.drawable.forteen, R.drawable.fifteen, R.drawable.sixteen, R.drawable.seventeen, R.drawable.eighteen, R.drawable.nineteen, R.drawable.twenty, R.drawable.twentyone};
-    String[] solution = {"12", "8", "6", "29", "57", "5", "3", "15", "74", "2", "6", "97", "45", "5", "7", "16", "73", "26", "42", "35", "96"};
+    //R.drawable.four, R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight, R.drawable.nine, R.drawable.ten, R.drawable.eleven, R.drawable.twelve, R.drawable.thirteen, R.drawable.forteen, R.drawable.fifteen, R.drawable.sixteen, R.drawable.seventeen, R.drawable.eighteen, R.drawable.nineteen, R.drawable.twenty, R.drawable.twentyone
+    int[] drawables = {R.drawable.one, R.drawable.two, R.drawable.three};
+    String[] solution = {"12", "8", "6"};
+    //, "29", "57", "5", "3", "15", "74", "2", "6", "97", "45", "5", "7", "16", "73", "26", "42", "35", "96"
     int True = 0, ones = 0, tens = 0, False = 0;
     int disease = Utils.Disease.None.getNumVal();
 
@@ -74,14 +76,29 @@ public class Ishihara extends AppCompatActivity {
 
                     findViewById(R.id.frame1).setVisibility(View.GONE);
                     findViewById(R.id.frame2).setVisibility(View.VISIBLE);
-                    if (False >= 4 && ones == False) {
+                    if (False == 1 ) {
                         disease = Utils.Disease.DName.getNumVal();
-                    } else if (False >= 4 && tens == False) {
+                    } else if (False == 2 ) {
                         disease = Utils.Disease.PName.getNumVal();
-                    } else {
+                    } else if(False==3) {
                         disease = Utils.Disease.TName.getNumVal();
                     }
-                    ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You were correct on " + String.valueOf(True) + "/" + drawables.length + " images.");
+                    if(False==1){
+                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Deuteranopia type of colourblindess(red-green)");
+
+                    }
+                    else if(False==2){
+                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Protanopia type of colourblindess(red-green)");
+
+                    }
+                    else if(False==3){
+                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Tritanopia type of colourblindess (blue and green, purple and red, and yellow and pink)");
+
+                    }
+                    else if(False==0){
+                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You were correct on " + String.valueOf(True) + "/" + drawables.length + " images.");
+
+                    }
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("result", True);
                     resultIntent.putExtra("disease", disease);

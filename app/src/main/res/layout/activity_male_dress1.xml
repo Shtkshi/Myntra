@@ -31,8 +31,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="DOROTHY PERKINS"
-                android:textSize="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="Abrakadabra"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -40,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="Women Beige and Black Animal"
+
+                android:text="Tripy print t-shirt"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -49,8 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:padding="4dp"
-            android:text="Printed A line dress"
-            android:textSize="15dp" />
+            android:text="Rs. 599"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -138,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="Beige and black printed woven A line dress with gathered detail, has a round neck, leeveless and has a flounce hem"
+                android:text="Men pinted round neck t shirt with gathered detail, have mushroom prints on the front"
                 android:textSize="12sp" />
 
             <TextView
@@ -147,7 +150,7 @@
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 android:text="Material and Core"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -155,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="Material 97% viscose, 3% elastane \n Machine wash"
+                android:text="Material 97% Cotton, 3% elastane \n Machine wash"
                 android:textSize="12sp" />
 
             <TextView
@@ -164,7 +167,7 @@
                 android:layout_margin="4dp"
                 android:padding="4dp"
                 android:text="Style Note"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -172,14 +175,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:padding="4dp"
-                android:text="The dress from Dorothy Perki=ns is both stylish and durable, making it a must have item. When you are going through an art gallery opening or a theater, wear this printed beige piece with platform heels and trendy clutch"
+                android:text="The dress from Abrakadabra is both stylish and durable, making it a must have item."
                 android:textSize="12sp" />
 
         </LinearLayout>
         <Button
-            android:id="@+id/tryIt"
+            android:id="@+id/_men"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="tryIt" />
+            android:background="@drawable/button_bg"
+            android:text="Try It" />
     </LinearLayout>
 </ScrollView>
