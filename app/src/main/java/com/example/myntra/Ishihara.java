@@ -18,11 +18,11 @@ public class Ishihara extends AppCompatActivity {
     Button submitIshihara;
     boolean eval = false;
     int count = 0;
-    //R.drawable.four, R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight, R.drawable.nine, R.drawable.ten, R.drawable.eleven, R.drawable.twelve, R.drawable.thirteen, R.drawable.forteen, R.drawable.fifteen, R.drawable.sixteen, R.drawable.seventeen, R.drawable.eighteen, R.drawable.nineteen, R.drawable.twenty, R.drawable.twentyone
-    int[] drawables = {R.drawable.one, R.drawable.two, R.drawable.three};
-    String[] solution = {"12", "8", "6"};
-    //, "29", "57", "5", "3", "15", "74", "2", "6", "97", "45", "5", "7", "16", "73", "26", "42", "35", "96"
+    int[] drawables = {R.drawable.one, R.drawable.ten, R.drawable.nine, R.drawable.seven, R.drawable.twelve, R.drawable.eleven, R.drawable.thirteen, R.drawable.six, R.drawable.eight, R.drawable.forteen, R.drawable.eighteen, R.drawable.fifteen, R.drawable.five, R.drawable.four, R.drawable.nineteen, R.drawable.seventeen, R.drawable.sixteen, R.drawable.three, R.drawable.twenty, R.drawable.twentyone, R.drawable.two};
+    String[] solution = {"12", "2", "74", "3", "97", "6", "45", "5", "15", "5", "26", "7", "57", "29", "42", "73", "16", "6", "35", "96", "8"};
+    //"12", "2", "74","3","97","6","45","5","15"
     int True = 0, ones = 0, tens = 0, False = 0;
+    boolean[] ans = new boolean[21]; // sixe aaega andar, ab karle isse, chalega? yahi chahiye tha?
     int disease = Utils.Disease.None.getNumVal();
 
     @Override
@@ -59,6 +59,7 @@ public class Ishihara extends AppCompatActivity {
                 }
                 editAns = editAns.trim();
                 eval = editAns.equals(solution[count]);
+                ans[count] = eval;
                 if (eval) {
                     Toast.makeText(Ishihara.this, "Correct answer", Toast.LENGTH_SHORT).show();
                     True++;
@@ -76,33 +77,31 @@ public class Ishihara extends AppCompatActivity {
 
                     findViewById(R.id.frame1).setVisibility(View.GONE);
                     findViewById(R.id.frame2).setVisibility(View.VISIBLE);
-                    if (False == 1 ) {
-                        disease = Utils.Disease.DName.getNumVal();
-                    } else if (False == 2 ) {
-                        disease = Utils.Disease.PName.getNumVal();
-                    } else if(False==3) {
-                        disease = Utils.Disease.TName.getNumVal();
-                    }
-                    if(False==1){
-                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Deuteranopia type of colourblindess(red-green)");
-
-                    }
-                    else if(False==2){
-                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Protanopia type of colourblindess(red-green)");
-
-                    }
-                    else if(False==3){
+                    disease = 0;
+                    if (False >= 12) {
                         ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Tritanopia type of colourblindess (blue and green, purple and red, and yellow and pink)");
+                        disease = Utils.Disease.TName.getNumVal();
+                    } else if (False >= 4) { // no nahi ho raha hai vo isme chla ja raha hai
+                        if (!ans[1] || !ans[2] || !ans[4] || !ans[6]) {
+                            disease = Utils.Disease.DName.getNumVal();
+                            ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Deuteranopia type of colour blindess(red-green)");
+                        }else if (!ans[5] && !ans[6]) {
+                            disease = Utils.Disease.PName.getNumVal();
+                            ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Protanopia type of colour blindess(red-green");
 
-                    }
-                    else if(False==0){
-                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You were correct on " + String.valueOf(True) + "/" + drawables.length + " images.");
+                        }else{
+                            disease = Utils.Disease.DName.getNumVal();// 4 galat main default main yahi chahiye na?
+                            ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You have Deuteranopia type of colour blindess(red-green)");
+                        }
+                    } else {
+                        ((AppCompatTextView) findViewById(R.id.colorBlindInfo)).setText("You dont have color blindness");
+                        disease = 0;
 
                     }
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("result", True);
                     resultIntent.putExtra("disease", disease);
-                    setResult(Activity.RESULT_OK, resultIntent);
+                    setResult(Activity.RESULT_OK, resultIntent); // done? ek baar check kar lu , okay baki sab git mai dalna hai kese dalte hai? dikha duga, check karloya?
                     submitIshihara.setText("Return to the main menu.");
                     return;
                 }
