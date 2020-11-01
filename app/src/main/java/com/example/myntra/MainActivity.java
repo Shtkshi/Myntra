@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     int RecordAudioRequestCode = 1000;
     SpeechRecognizer speechRecognizer;
     boolean colorblind;
-    int women = R.drawable.womenicon;//ese?? yup
+    int women = R.drawable.womenicon;
     int men = R.drawable.menicon;
 
     int e = R.drawable.e;

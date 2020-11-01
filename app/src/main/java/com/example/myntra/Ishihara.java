@@ -22,7 +22,7 @@ public class Ishihara extends AppCompatActivity {
     String[] solution = {"12", "2", "74", "3", "97", "6", "45", "5", "15", "5", "26", "7", "57", "29", "42", "73", "16", "6", "35", "96", "8"};
     //"12", "2", "74","3","97","6","45","5","15"
     int True = 0, ones = 0, tens = 0, False = 0;
-    boolean[] ans = new boolean[21]; // sixe aaega andar, ab karle isse, chalega? yahi chahiye tha?
+    boolean[] ans = new boolean[21];
     int disease = Utils.Disease.None.getNumVal();
 
     @Override
@@ -101,7 +101,7 @@ public class Ishihara extends AppCompatActivity {
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("result", True);
                     resultIntent.putExtra("disease", disease);
-                    setResult(Activity.RESULT_OK, resultIntent); // done? ek baar check kar lu , okay baki sab git mai dalna hai kese dalte hai? dikha duga, check karloya?
+                    setResult(Activity.RESULT_OK, resultIntent);
                     submitIshihara.setText("Return to the main menu.");
                     return;
                 }

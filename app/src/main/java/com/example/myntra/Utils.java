@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Utils {
-    public static final String serverUrl = "http://192.168.1.240:5000"; // set the static server url to this url
+    public static final String serverUrl = "http://192.168.1.240:5000";
 
     public enum Disease {
         None(0),
@@ -57,7 +57,7 @@ public class Utils {
         if (disease == 0) {
             imageReceived.onImageReceivedSuccess(bmp);
         }
-        VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, "", new Response.Listener<NetworkResponse>() {
+        VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, serverUrl + "/updateImage?disease="+disease, new Response.Listener<NetworkResponse>() {
             @Override
             public void onResponse(NetworkResponse response) {
                 imageReceived.onImageReceivedSuccess(BitmapFactory.decodeByteArray(response.data, 0, response.data.length));
