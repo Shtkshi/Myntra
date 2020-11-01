@@ -1,6 +1,8 @@
 package com.example.myntra;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -13,13 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
+
 import java.util.Locale;
 import java.util.Objects;
 
 public class Dress1 extends AppCompatActivity {
     int disease = 0;
     boolean colorblind;
-    int[] imgID = {R.drawable.femaletwo, R.drawable.tshirt_d, R.drawable.tshirt_p, R.drawable.tshirt_t};
+    int imgID = R.drawable.femaletwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +40,23 @@ public class Dress1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dress1.this, doors_to_trial_room.class);
-                intent.putExtra("productId", imgID[disease]);
+                intent.putExtra("productId", imgID);
                 startActivity(intent);
             }
         });
         if (flag || blind) {
             AudioMode();
         }
-            ((ImageView) findViewById(R.id.frame)).setImageResource(imgID[disease]);
+        Utils.fetchColourBlindImage(this, BitmapFactory.decodeResource(getResources(), imgID), disease, new Utils.ImageReceived() {
+            @Override
+            public void onImageReceivedSuccess(Bitmap bitmap) {
+                ((ImageView) findViewById(R.id.frame)).setImageBitmap(bitmap);
+            }
+            @Override
+            public void onImageReceivedError(VolleyError e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
@@ -66,6 +79,7 @@ public class Dress1 extends AppCompatActivity {
         }
 
     }
+
     @Override
     public void onBackPressed() {
         if (tts != null)

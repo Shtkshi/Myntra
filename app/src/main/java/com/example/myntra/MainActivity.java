@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -24,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.VolleyError;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -37,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
     int RecordAudioRequestCode = 1000;
     SpeechRecognizer speechRecognizer;
     boolean colorblind;
-    int[] women = {R.drawable.womenicon, R.drawable.women_d, R.drawable.women_p, R.drawable.women_t};
-    int[] men = {R.drawable.menicon, R.drawable.men_d, R.drawable.men_p, R.drawable.men_t};
+    int women = R.drawable.womenicon;//ese?? yup
+    int men = R.drawable.menicon;
 
-    int[] e = {R.drawable.e, R.drawable.e_d, R.drawable.e_p, R.drawable.e_t};
-    int[] h = {R.drawable.h, R.drawable.h_d, R.drawable.h_p, R.drawable.h_t};
-    int[] g = {R.drawable.g, R.drawable.g_d, R.drawable.g_p, R.drawable.g_t};
-    int[] c = {R.drawable.c, R.drawable.c_d, R.drawable.c_p, R.drawable.c_t};
-    int[] b = {R.drawable.b, R.drawable.b_d, R.drawable.b_p, R.drawable.b_t};
-    int[] f = {R.drawable.f, R.drawable.f_d, R.drawable.f_p, R.drawable.f_t};
+    int e = R.drawable.e;
+    int h = R.drawable.h;
+    int g = R.drawable.g;
+    int c = R.drawable.c;
+    int b = R.drawable.b;
+    int f = R.drawable.f;
 
 
     private void checkPermission() {
@@ -148,16 +152,94 @@ public class MainActivity extends AppCompatActivity {
 //
                 } else {
                     disease = 0;
-                    ((ImageView) findViewById(R.id.male)).setImageResource(men[disease]);
-                    ((ImageView) findViewById(R.id.female)).setImageResource(women[disease]);
-                    ((ImageButton) findViewById(R.id.e)).setImageResource(e[disease]);
-                    ((ImageButton) findViewById(R.id.h)).setImageResource(h[disease]);
-                    ((ImageButton) findViewById(R.id.g)).setImageResource(g[disease]);
-                    ((ImageButton) findViewById(R.id.c)).setImageResource(c[disease]);
-                    ((ImageButton) findViewById(R.id.b)).setImageResource(b[disease]);
-                    ((ImageButton) findViewById(R.id.f)).setImageResource(f[disease]);
-                    ((ImageButton) findViewById(R.id.dup_b)).setImageResource(b[disease]);
-                    ((ImageButton) findViewById(R.id.dup_g)).setImageResource(g[disease]);
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), men), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.male)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), women), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.female)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), e), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.e)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), h), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.h)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), g), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.g)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), c), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.c)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), b), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.b)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), f), disease, new Utils.ImageReceived() {
+                        @Override
+                        public void onImageReceivedSuccess(Bitmap bitmap) {
+                            ((ImageView) findViewById(R.id.f)).setImageBitmap(bitmap);
+                        }
+
+                        @Override
+                        public void onImageReceivedError(VolleyError e) {
+                            e.printStackTrace();
+                        }
+                    });
                 }
             }
         });
@@ -181,17 +263,96 @@ public class MainActivity extends AppCompatActivity {
                     disease = data.getIntExtra("disease", 0);
                     Toast.makeText(MainActivity.this, "Result Received" + score, Toast.LENGTH_LONG).show();
                     resultEvaluated = true;
-                    ((ImageView) findViewById(R.id.male)).setImageResource(men[disease]);
-                    ((ImageView) findViewById(R.id.female)).setImageResource(women[disease]);
-                    ((ImageButton) findViewById(R.id.e)).setImageResource(e[disease]);
-                    ((ImageButton) findViewById(R.id.h)).setImageResource(h[disease]);
-                    ((ImageButton) findViewById(R.id.g)).setImageResource(g[disease]);
-                    ((ImageButton) findViewById(R.id.c)).setImageResource(c[disease]);
-                    ((ImageButton) findViewById(R.id.b)).setImageResource(b[disease]);
-                    ((ImageButton) findViewById(R.id.f)).setImageResource(f[disease]);
-                    ((ImageButton) findViewById(R.id.dup_b)).setImageResource(b[disease]);
-                    ((ImageButton) findViewById(R.id.dup_g)).setImageResource(g[disease]);
+                    Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), men), disease, new Utils.ImageReceived() {
+                        @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.male)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), women), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.female)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), e), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.e)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), h), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.h)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), g), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.g)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), c), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.c)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), b), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.b)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
+                Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), f), disease, new Utils.ImageReceived() {
+                    @Override
+                    public void onImageReceivedSuccess(Bitmap bitmap) {
+                        ((ImageView) findViewById(R.id.f)).setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onImageReceivedError(VolleyError e) {
+                        e.printStackTrace();
+                    }
+                });
                 }
+
             } else {
                 colorBlindSwitch.setChecked(false);
             }

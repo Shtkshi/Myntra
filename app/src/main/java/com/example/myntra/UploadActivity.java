@@ -144,7 +144,7 @@ public class UploadActivity extends AppCompatActivity {
         parts[2] = new VolleyMultipartRequest.DataPart("image2.jpg", toByteArray(b3, false), "image/jpeg");
         parts[3] = new VolleyMultipartRequest.DataPart("image3.jpg", toByteArray(BitmapFactory.decodeResource(getResources(), productId), true), "image/jpeg");
 
-        VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, "http://192.168.1.240:5000/api/android", new Response.Listener<NetworkResponse>() {
+        VolleyMultipartRequest req = new VolleyMultipartRequest(Request.Method.POST, Utils.serverUrl + "/api/android", new Response.Listener<NetworkResponse>() {
             @Override
             public void onResponse(NetworkResponse response) {
                 try {

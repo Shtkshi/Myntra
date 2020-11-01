@@ -1,6 +1,8 @@
 package com.example.myntra;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -13,13 +15,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
+
 import java.util.Locale;
 import java.util.Objects;
 
 public class Male_dress1 extends AppCompatActivity {
     int disease;
     Boolean colorblind;
-    int[] imgID = {R.drawable.male1, R.drawable.male_d, R.drawable.male_p,R.drawable.male_t};
+    int imgID = R.drawable.male1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +39,7 @@ public class Male_dress1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Male_dress1.this, doors_to_trial_room.class);
-                intent.putExtra("productId", imgID[disease]);
+                intent.putExtra("productId", imgID);
                 startActivity(intent);
             }
         });
@@ -45,8 +49,19 @@ public class Male_dress1 extends AppCompatActivity {
         }
         disease=extras.getInt("disease");
         colorblind=extras.getBoolean("colorblind");
-        if(colorblind)
-            ((ImageView) findViewById(R.id.male_dress1)).setImageResource(imgID[disease]);
+        if(colorblind){
+            Utils.fetchColourBlindImage(this, BitmapFactory.decodeResource(getResources(), imgID), disease, new Utils.ImageReceived() {
+                @Override
+                public void onImageReceivedSuccess(Bitmap bitmap) {
+                    ((ImageView) findViewById(R.id.male_dress1)).setImageBitmap(bitmap);
+                }
+
+                @Override
+                public void onImageReceivedError(VolleyError e) {
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 
 
