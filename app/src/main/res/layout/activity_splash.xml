@@ -15,7 +15,7 @@
         android:padding="10dp"
         app:srcCompat="@drawable/shirt" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"

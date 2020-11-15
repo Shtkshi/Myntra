@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,11 +37,15 @@ public class Male_dress1 extends AppCompatActivity {
         assert extras != null;
         boolean flag = extras.getBoolean("flag");
         boolean blind=extras.getBoolean("blind");
+        disease = extras.getInt("disease");
+        Utils.change((ScrollView) findViewById(R.id.parentLayout), disease, this);
+
         findViewById(R.id._men).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Male_dress1.this, doors_to_trial_room.class);
                 intent.putExtra("productId", imgID);
+                intent.putExtra("disease",disease);
                 startActivity(intent);
             }
         });

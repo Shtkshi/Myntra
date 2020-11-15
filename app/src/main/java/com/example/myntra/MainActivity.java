@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         assert extras != null;
         boolean blind = extras.getBoolean("blind");
         disease = extras.getInt("disease");
+        // yahan direct likha hai kyuki aray lekin disease to 0 hi hoga na, dont know maybe
+        Utils.change((RelativeLayout) findViewById(R.id.parentLayout), disease, this);
 
         if (blind) {
             tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -261,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 if (data != null) {
                     int score = data.getIntExtra("result", 0);
                     disease = data.getIntExtra("disease", 0);
+                    Utils.change((RelativeLayout)findViewById(R.id.parentLayout), disease, this);
                     Toast.makeText(MainActivity.this, "Result Received" + score, Toast.LENGTH_LONG).show();
                     resultEvaluated = true;
                     Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), men), disease, new Utils.ImageReceived() {
@@ -329,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 });
+
                 Utils.fetchColourBlindImage(MainActivity.this, BitmapFactory.decodeResource(getResources(), b), disease, new Utils.ImageReceived() {
                     @Override
                     public void onImageReceivedSuccess(Bitmap bitmap) {
@@ -368,11 +373,13 @@ public class MainActivity extends AppCompatActivity {
             if (result.get(0).toLowerCase().contains("women") || result.get(0).toLowerCase().contains("female") || result.get(0).toLowerCase().contains("ladki") || result.get(0).toLowerCase().contains("girl")) {
                 Intent intent = new Intent(MainActivity.this, Dress1.class);
                 intent.putExtra("blind", true);
+                intent.putExtra("disease", disease);
                 finish();
                 startActivity(intent);
             } else if (result.get(0).toLowerCase().contains("men") || result.get(0).toLowerCase().contains("male") || result.get(0).toLowerCase().contains("boy") || result.get(0).toLowerCase().contains("ladke")) {
                 Intent intent = new Intent(MainActivity.this, Male_dress1.class);
                 intent.putExtra("blind", true);
+                intent.putExtra("disease", disease);
                 finish();
                 startActivity(intent);
             }

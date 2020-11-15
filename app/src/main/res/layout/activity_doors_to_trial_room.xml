@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/parentLayout"
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".doors_to_trial_room">
-    <TextView
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/door"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
-        android:typeface="sans"
-        android:textStyle="bold"
         android:text="Virtual Door"
-        android:textSize="60dp"
         android:textAlignment="center"
-        android:id="@+id/door"
-        />
-    <TextView
+        android:textColor="@color/colorPrimary"
+        android:textSize="60dp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/door"
-        android:textColor="#FFFFFF"
         android:padding="10dp"
-        android:id="@+id/textone"
-        android:textSize="20dp"
         android:text="Welcome to the all new experience of virtual trial room....."
-        />
+        android:textColor="#FFFFFF"
+        android:textSize="20dp" />
+
     <ImageView
+        android:id="@+id/instructions"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:background="#000000"
-        android:src="@drawable/trialroom"
         android:layout_below="@+id/textone"
-        android:id="@+id/instructions"
-        />
-    <TextView
+        android:background="#000000"
+        android:src="@drawable/trialroom" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/texttwo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/instructions"
-        android:textColor="#FFFFFF"
-        android:id="@+id/texttwo"
         android:padding="20dp"
         android:text=" You are all set to proceed in the virtual room. "
-        />
+        android:textColor="#FFFFFF" />
+
     <Button
+        android:id="@+id/trial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/texttwo"
-        android:text="Virtual Door"
-        android:id="@+id/trial"
         android:layout_centerHorizontal="true"
-        android:padding="20dp"
         android:background="@drawable/button_bg"
-        />
+        android:padding="20dp"
+        android:text="Virtual Door" />
 
 </RelativeLayout>

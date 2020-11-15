@@ -11,22 +11,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -43,6 +42,7 @@ public class UploadActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     private void dispatchTakePictureIntent(int REQUEST_IMAGE_CAPTURE) {
+        colorblindness.colorblindness a = new colorblindness.colorblindness(null); // working? ye kya hua hai? aab?
 /*
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
@@ -106,6 +106,13 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+        Bundle extras = getIntent().getExtras();
+        assert extras != null;
+        final int picture = extras.getInt("productId");
+        int disease = extras.getInt("disease");
+        Utils.change((RelativeLayout) findViewById(R.id.parentLayout), disease, this);
+
+//        Utils.change((ScrollView) findViewById(R.id.parentLayout), 2, this); // try this after filling all the colours iske ander ke
         productId = getIntent().getIntExtra("productId", R.drawable.femaletwo);
         findViewById(R.id.upload1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +141,7 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
     }
+
     public void uploadMulti() {
         if (possible != 7) {
             return;
